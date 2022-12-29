@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Words Room</string>
+    <string name="add_word">#WORD_ADD_STRING</string>
+    <string name="hint_word">#WORD_HINT_STRING</string>
+    <string name="empty_not_saved">#WORD_EMPTY_NOT_SAVED</string>
+    <string name="button_save">"WORD_BUTTON_SAVE</string>
+</resources>
