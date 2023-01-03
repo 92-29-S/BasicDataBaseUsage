@@ -8,16 +8,16 @@ class WordRepository {
     private var mAllWords: LiveData<List<WordEntity>>
 
     constructor(application: Application) {
-        val db: WordRoomDatabase = WordRoomDatabase.getDatabase(application)!!
-        mWordDAO = db.wordDAO()!!
-        mAllWords = db.getSortedWords()
+        val db: WordRoomDatabase? = WordRoomDatabase.getDatabase(application)
+        mWordDAO = db?.wordDAO()!!
+        mAllWords = mWordDAO.getSortedWords()
     }
 
-    fun getAllWords(): LiveData<List<WordEntity>>? {
+    fun getAllWords(): LiveData<List<WordEntity>> {
         return mAllWords
     }
 
-    fun insert(word: WordEntity) {
-        WordRoomDatabase.databaseWriteExecutor.execute(Runnable { mWordDAO!!.insert(word) })
+    fun insert(info_word: WordEntity) {
+        WordRoomDatabase.databaseWriteExecutor.execute(Runnable { mWordDAO.insert(info_word) })
     }
 }

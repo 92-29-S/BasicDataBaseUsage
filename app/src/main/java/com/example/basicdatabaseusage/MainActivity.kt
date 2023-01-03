@@ -13,9 +13,8 @@ import com.example.basicdatabaseusage.recycler.WordListAdapter.WordDiff
 import com.example.basicdatabaseusage.recycler.WordViewModel
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    val NEW_WORD_ACTIVITY_REQUEST_CODE = 1
-
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var mWordViewModel: WordViewModel
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerview.layoutManager = LinearLayoutManager(this)
 
         mWordViewModel = ViewModelProvider(this).get(WordViewModel::class.java)
-        mWordViewModel.getAllWords().observe(this) { words: List<WordEntity?>? ->
+        mWordViewModel.getAllWords().observe(this) { words: List<WordEntity>? ->
             // Update the cached copy of the words in the adapter.
             adapter.submitList(words)
         }
@@ -45,9 +44,13 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            mWordViewModel.insert(WordEntity(data!!.getStringExtra(NewWordActivity.EXTRA_REPLY)!!))
+            mWordViewModel.insert(WordEntity(data?.getStringExtra(NewWordActivity.EXTRA_REPLY)!!))
         } else {
             Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
         }
+    }
+
+    companion object {
+        const val NEW_WORD_ACTIVITY_REQUEST_CODE = 1
     }
 }

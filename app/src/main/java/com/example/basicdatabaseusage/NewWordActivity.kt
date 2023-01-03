@@ -21,7 +21,7 @@ class NewWordActivity : AppCompatActivity() {
             if (TextUtils.isEmpty(binding.editWord.getText())) {
                 setResult(RESULT_CANCELED, replyIntent)
             } else {
-                val word = binding.editWord.getText().toString()
+                val word: String = binding.editWord.getText().toString()
                 replyIntent.putExtra(EXTRA_REPLY, word)
                 setResult(RESULT_OK, replyIntent)
             }

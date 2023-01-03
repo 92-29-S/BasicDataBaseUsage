@@ -6,14 +6,13 @@ import androidx.lifecycle.LiveData
 import com.example.basicdatabaseusage.databases.WordEntity
 import com.example.basicdatabaseusage.databases.WordRepository
 
-
-class WordViewModel(application: Application) : AndroidViewModel(application) {
+internal class WordViewModel(application: Application) : AndroidViewModel(application) {
     private val mRepository: WordRepository
     private val mAllWords: LiveData<List<WordEntity>>
 
     init {
         mRepository = WordRepository(application)
-        mAllWords = mRepository.getAllWords()!!
+        mAllWords = mRepository.getAllWords()
     }
 
     fun getAllWords(): LiveData<List<WordEntity>> {
